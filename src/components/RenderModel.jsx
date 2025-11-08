@@ -1,15 +1,24 @@
 "use client";
+
+import React, { Suspense, useEffect, useState } from "react";
 import { Environment } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import clsx from "clsx";
-import React, { Suspense } from "react";
-import * as WEBGL from "three/examples/jsm/capabilities/WebGL.js";
+import { isWebGLAvailable, getWebGLErrorMessage } from "three/examples/jsm/capabilities/WebGL.js";
 
 const RenderModel = ({ children, className }) => {
-  const isWebGLAvailable = WEBGL.isWebGLAvailable();
+  const [webglSupported, setWebglSupported] = useState(true);
 
-  if (!isWebGLAvailable) {
-    const message = WEBGL.getWebGLErrorMessage();
+  useEffect(() => {
+    // Only check in the browser
+    if (typeof window !== "undefined") {
+      const available = isWebGLAvailable();
+      setWebglSupported(!!available);
+    }
+  }, []);
+
+  if (!webglSupported) {
+    const message = getWebGLErrorMessage();
     return (
       <div
         className={clsx(
