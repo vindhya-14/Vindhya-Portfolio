@@ -23,7 +23,7 @@ export const projectsData = [
     description:
       "SnapCart is a fast and intuitive e-commerce platform offering a seamless shopping experience with a wide range of products and quick checkout.",
     date: "2024-08-15",
-    demoLink: "https://github.com/vindhya-14/SnapCart",
+    demoLink: "",
   },
   {
     id: 2,
@@ -31,7 +31,7 @@ export const projectsData = [
     description:
       "UserHub is a user management app that enables easy addition, updating, and deletion of user profiles with a clean and intuitive interface.",
     date: "2024-06-20",
-    demoLink: "https://github.com/vindhya-14/UserHub",
+    demoLink: "",
   },
   {
     id: 3,
@@ -39,7 +39,7 @@ export const projectsData = [
     description:
       "Test your intuition and logic in this exciting game where the challenge is to reveal the secret number hidden in plain sight.",
     date: "2024-09-10",
-    demoLink: "https://github.com/vindhya-14/Cipher-Hunt",
+    demoLink: "",
   },
   {
     id: 4,
@@ -47,7 +47,7 @@ export const projectsData = [
     description:
       "A URL Shortener is a tool that converts long URLs into shorter, more manageable links while maintaining their functionality. It often includes features like click tracking, analytics, and custom short links for enhanced usability and insights.",
     date: "2024-05-30",
-    demoLink: "https://github.com/vindhya-14/URL-Shortener",
+    demoLink: "",
   },
 ];
 
@@ -58,25 +58,25 @@ export const BtnList = [
   { label: "Contact", link: "/contact", icon: "contact", newTab: false },
   {
     label: "Github",
-    link: "https://github.com/vindhya-14",
+    link: "",
     icon: "github",
     newTab: true,
   },
   {
     label: "LinkedIn",
-    link: "https://www.linkedin.com/in/vindhya-r1/",
+    link: "",
     icon: "linkedin",
     newTab: true,
   },
   {
     label: "X",
-    link: "https://x.com/rrvindhya",
+    link: "",
     icon: "twitter",
     newTab: true,
   },
   {
     label: "Resume",
-    link: "/Vindhya_Updated_Resume.pdf",
+    link: "",
     icon: "resume",
     newTab: true,
   },
