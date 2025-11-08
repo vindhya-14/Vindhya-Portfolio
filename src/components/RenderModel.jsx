@@ -1,31 +1,46 @@
 "use client";
 
 import React, { Suspense, useEffect, useState } from "react";
-import { Environment } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
+import { Environment } from "@react-three/drei";
 import clsx from "clsx";
-import { isWebGLAvailable, getWebGLErrorMessage } from "three/examples/jsm/capabilities/WebGL.js";
+
+let isWebGLAvailable = null;
+let getWebGLErrorMessage = null;
+
+try {
+  const cap = await import("three/examples/jsm/capabilities/WebGL.js");
+  isWebGLAvailable = cap.isWebGLAvailable;
+  getWebGLErrorMessage = cap.getWebGLErrorMessage;
+} catch (e) {
+  console.warn("Could not load WebGL capability helper:", e);
+}
 
 const RenderModel = ({ children, className }) => {
   const [webglSupported, setWebglSupported] = useState(true);
 
   useEffect(() => {
-    // Only check in the browser
-    if (typeof window !== "undefined") {
-      const available = isWebGLAvailable();
-      setWebglSupported(!!available);
+    if (typeof window !== "undefined" && typeof isWebGLAvailable === "function") {
+      setWebglSupported(!!isWebGLAvailable());
+    } else {
+      // assume unsupported if helper not available
+      setWebglSupported(false);
     }
   }, []);
 
   if (!webglSupported) {
-    const message = getWebGLErrorMessage();
+    const messageDiv = (typeof getWebGLErrorMessage === "function")
+      ? getWebGLErrorMessage()
+      : document.createElement("div").appendChild(
+          document.createTextNode("WebGL not supported on this device.")
+        );
     return (
       <div
         className={clsx(
           "flex flex-col items-center justify-center w-screen h-screen text-white text-center bg-black/70",
           className
         )}
-        dangerouslySetInnerHTML={{ __html: message.outerHTML }}
+        dangerouslySetInnerHTML={{ __html: messageDiv.outerHTML || messageDiv }}
       />
     );
   }
